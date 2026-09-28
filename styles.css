@@ -36,10 +36,20 @@ body {
 }
 
 /* Logo flotante (antes estaba como style inline en el HTML) */
+/* La posición la maneja el script con transform (sin transition de transform:
+   el suavizado lo hace el propio script cuadro a cuadro) */
 #the-logo {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 100;
-    transition: opacity 0.5s ease, transform 0.8s ease-in-out;
+    will-change: transform;
+    transition: opacity 0.5s ease;
+}
+
+#the-logo.is-hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Hero Section */

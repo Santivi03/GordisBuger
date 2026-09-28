@@ -239,56 +239,77 @@
         const logo = document.getElementById('the-logo');
         const bubble = document.getElementById('speech-bubble');
         const horariosSection = document.getElementById('horarios');
-        let ticking = false;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-        function updateLogoPosition() {
-            ticking = false;
-            const scrollY = window.scrollY;
+        // Posición actual (lo que se ve) y objetivo (lo que pide el scroll).
+        // El logo se mueve solo con transform, así no se recalcula el layout en cada frame.
+        let x = 0, y = 0, targetX = 0, targetY = 0;
+        let running = false, lastTime = 0, first = true;
+
+        // Suaviza el avance del scroll: arranca y llega despacio
+        const easeInOut = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+        function computeTarget() {
             const wh = window.innerHeight;
-            const ww = window.innerWidth;
-            const isMobile = ww < 768;
-            const progress = Math.min(scrollY / wh, 1);
+            const ww = document.documentElement.clientWidth;
+            const isMobile = window.innerWidth < 768;
+            const progress = easeInOut(Math.min(window.scrollY / wh, 1));
 
-            // VARIABLES INICIALES (HERO)
-            const startLeft = 50;
-            const startMargin = isMobile ? -40 : -380;
-            const startTop = isMobile ? 0.20 * wh : 0.40 * wh;
+            // HERO: al lado del título / MENÚ: esquina de abajo a la derecha, sin tapar las tarjetas
+            const startX = ww * 0.5 + (isMobile ? -40 : -380);
+            const startY = isMobile ? 0.20 * wh : 0.40 * wh;
+            const endX = ww + (isMobile ? -105 : -210);
+            const endY = isMobile ? (wh - 120) : (wh - 180);
 
-            // VARIABLES FINALES (MENÚ ATERRIZAJE)
-            // Va a la esquina derecha para no tapar las tarjetas del menú
-            const targetLeft = 100;
-            const endMargin = isMobile ? -105 : -210;
-            const endTop = isMobile ? (wh - 120) : (wh - 180);
-
-            const top = startTop + (endTop - startTop) * progress;
-            const left = startLeft + (targetLeft - startLeft) * progress;
-            const margin = startMargin + (endMargin - startMargin) * progress;
-
-            logo.style.top = top + 'px';
-            logo.style.left = left + '%';
-            logo.style.marginLeft = margin + 'px';
+            targetX = startX + (endX - startX) * progress;
+            targetY = startY + (endY - startY) * progress;
             bubble.classList.toggle('show', progress >= 1);
 
-            // Ocultar el logo y moverlo a la derecha cuando aparece la sección de horarios.
-            // getBoundingClientRect mide desde la pantalla, así no depende de qué elemento
-            // tenga position: relative (offsetTop medía desde el <main>, no desde la página).
+            // Al aparecer Horarios, se va por la derecha (con el mismo movimiento suave)
             const hide = horariosSection.getBoundingClientRect().top < wh * 0.9;
-            logo.style.transform = hide ? 'translateX(100vw)' : 'translateX(0)';
-            logo.style.opacity = hide ? '0' : '1';
-            logo.style.pointerEvents = hide ? 'none' : 'auto';
+            if (hide) targetX = ww + 40;
+            logo.classList.toggle('is-hidden', hide);
         }
 
-        // requestAnimationFrame: recalcula como mucho una vez por frame en vez de en cada evento de scroll
-        function requestUpdate() {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(updateLogoPosition);
+        function render() {
+            logo.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+        }
+
+        function tick(now) {
+            const dt = Math.min(now - lastTime, 64);
+            lastTime = now;
+            // Persigue al objetivo: cuanto más lejos, más rápido. Igual a 60 o 144 Hz.
+            const k = reduceMotion.matches ? 1 : 1 - Math.exp(-dt / 110);
+            x += (targetX - x) * k;
+            y += (targetY - y) * k;
+
+            if (Math.abs(targetX - x) < 0.1 && Math.abs(targetY - y) < 0.1) {
+                x = targetX; y = targetY;
+                running = false;
+            } else {
+                requestAnimationFrame(tick);
+            }
+            render();
+        }
+
+        function update() {
+            computeTarget();
+            if (first) {
+                // Primera vez: aparece directo en su lugar, sin viajar desde la esquina
+                x = targetX; y = targetY; first = false;
+                render();
+                return;
+            }
+            if (!running) {
+                running = true;
+                lastTime = performance.now();
+                requestAnimationFrame(tick);
             }
         }
 
-        window.addEventListener('scroll', requestUpdate, { passive: true });
-        window.addEventListener('resize', requestUpdate);
-        updateLogoPosition();
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
     </script>
 </body>
 </html>
