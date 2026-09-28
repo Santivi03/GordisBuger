@@ -1,0 +1,7 @@
+# Configuración local del editor / Claude
+.claude/
+
+# Material de referencia que la página no usa
+menu*.jpeg
+horarios.jpeg
+bg-pattern*.jpg

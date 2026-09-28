@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gordis Burger – Unas buenas burgas</title>
+    <meta name="description" content="Gordis Burger: unas buenas burgas. Hamburguesas smash con papas, nuggets, la cajita del Pochoclo y más. Mirá el menú, los precios y los horarios.">
+    <meta name="theme-color" content="#33ccff">
+
+    <!-- Vista previa al compartir el link (WhatsApp, Instagram, Facebook, X) -->
+    <!-- IMPORTANTE: cuando subas la página, reemplazá og:url y og:image por la URL completa (https://...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Gordis Burger">
+    <meta property="og:title" content="Gordis Burger – Unas buenas burgas 🍔">
+    <meta property="og:description" content="Hamburguesas smash que salen con papas. Mirá el menú, los precios y los horarios.">
+    <meta property="og:url" content="https://TU-DOMINIO/">
+    <meta property="og:image" content="https://TU-DOMINIO/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="El muñeco de Gordis Burger junto a una hamburguesa doble con cheddar">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Titan+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="the-logo" aria-hidden="true">
+        <img src="logo.png" alt="" class="logo-img" width="150" height="151">
+        <div id="speech-bubble" class="speech-bubble">Unas buenas Burgas</div>
+    </div>
+
+    <header class="hero">
+        <div class="logo-container">
+            <h1 class="brand-name">
+                <span class="main-title">GORDIS</span>
+                <span class="sub-title">BURGER</span>
+            </h1>
+        </div>
+        <a href="#menu-section" class="scroll-indicator">
+            <span class="scroll-text">Descubre nuestro menú</span>
+            <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+    </header>
+
+    <main id="menu-section" class="menu-section">
+        <div class="title-container">
+            <h2>Nuestro Menú</h2>
+        </div>
+
+        <ul class="menu-notes">
+            <li class="note note-yellow">🍟 Todas las burgas salen con papas</li>
+            <li class="note note-white">Sumá tu dip de salsa Gordis por <strong>$1.000</strong></li>
+        </ul>
+
+        <!-- ===== BURGAS ===== -->
+        <section class="menu-block" aria-labelledby="t-burgas">
+            <h3 id="t-burgas" class="block-title">Burgas</h3>
+            <div class="card-grid">
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/clasica.webp" alt="Gordis Clásica: hamburguesa doble con cheddar, pickles y salsa" width="313" height="258" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <span class="product-num">#1</span>
+                        <h4 class="product-name">Gordis Clásica</h4>
+                        <p class="product-desc">Pan brioche · Medallón Gordis · Cheddar · Pickles de pepino · Cebolla · Salsa Gordis</p>
+                        <dl class="prices">
+                            <div><dt>Simple</dt><dd>$16.000</dd></div>
+                            <div><dt>Doble</dt><dd>$22.500</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/tasti.webp" alt="Gordis Tasti: hamburguesa doble con cheddar, tomate y lechuga" width="322" height="248" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <span class="product-num">#2</span>
+                        <h4 class="product-name">Gordis Tasti</h4>
+                        <p class="product-desc">Pan brioche · Medallón Gordis · Cheddar · Cebolla · Tomate · Lechuga · Salsa Gordis Tasti</p>
+                        <dl class="prices">
+                            <div><dt>Simple</dt><dd>$16.000</dd></div>
+                            <div><dt>Doble</dt><dd>$22.500</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/bacon.webp" alt="Gordis Bacon: hamburguesa con bacon glaseado y cebolla crispy" width="332" height="248" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <span class="product-num">#3</span>
+                        <h4 class="product-name">Gordis Bacon</h4>
+                        <p class="product-desc">Pan brioche · Medallón Gordis · Cheddar · Cebolla crispy · Bacon glaseado · Salsa sweet bacon Gordis</p>
+                        <dl class="prices">
+                            <div><dt>Simple</dt><dd>$21.500</dd></div>
+                            <div><dt>Doble</dt><dd>$28.000</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/cuarto.webp" alt="Gordis Cuarto: hamburguesa doble con cheddar y ketchup en pan con sésamo" width="364" height="268" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <span class="product-num">#4</span>
+                        <h4 class="product-name">Gordis Cuarto</h4>
+                        <p class="product-desc">Pan brioche · Medallón Gordis · Cheddar · Salsa Gordis · Cebolla · Ketchup</p>
+                        <dl class="prices">
+                            <div><dt>Simple</dt><dd>$16.000</dd></div>
+                            <div><dt>Doble</dt><dd>$22.500</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/chicken.webp" alt="Gordis Chicken: hamburguesa de pollo crispy con bacon y lechuga" width="360" height="278" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <span class="product-num">#5</span>
+                        <h4 class="product-name">Gordis Chicken</h4>
+                        <p class="product-desc">Pan con sésamo · Medallón de pollo crispy · Cheddar · Bacon glaseado · Salsa ranch · Lechuga · Honey mustard</p>
+                        <dl class="prices">
+                            <div><dt>Simple</dt><dd>$16.000</dd></div>
+                        </dl>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== CAJITA ===== -->
+        <section class="menu-block" aria-labelledby="t-cajita">
+            <article class="cajita-card">
+                <div class="cajita-photo">
+                    <img src="img/cajita.webp" alt="La cajita del Pochoclo, con el muñeco de Gordis Burger" width="525" height="383" loading="lazy">
+                </div>
+                <div class="cajita-body">
+                    <h3 id="t-cajita" class="cajita-title">La cajita del Pochoclo</h3>
+                    <p class="cajita-toy">¡Incluye un Gordis Toys coleccionable!</p>
+                    <dl class="combo-list">
+                        <div><dt>Cheese burger + papitas + bebida</dt><dd>$21.500</dd></div>
+                        <div><dt>Gordis nuggets + papitas + bebida</dt><dd>$19.500</dd></div>
+                    </dl>
+                </div>
+            </article>
+        </section>
+
+        <!-- ===== ACOMPAÑAMIENTOS ===== -->
+        <section class="menu-block" aria-labelledby="t-extras">
+            <h3 id="t-extras" class="block-title">Para acompañar</h3>
+            <div class="card-grid card-grid-2">
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/nuggets.webp" alt="Gordis Nuggets: nuggets de pollo en caja" width="371" height="315" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <h4 class="product-name">Gordis Nuggets</h4>
+                        <p class="product-desc">10 nuggets de pollo, vienen con dip de salsa Gordis</p>
+                        <dl class="prices">
+                            <div><dt>Porción</dt><dd>$10.000</dd></div>
+                        </dl>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-photo">
+                        <img src="img/papas.webp" alt="Las papitas del Gordis: papas fritas sazonadas" width="680" height="765" loading="lazy">
+                    </div>
+                    <div class="product-body">
+                        <h4 class="product-name">Las papitas del Gordis</h4>
+                        <p class="product-desc">Papas sazonadas con nuestro ingrediente secreto (opción sin sazonar)</p>
+                        <dl class="prices">
+                            <div><dt>Porción</dt><dd>$4.000</dd></div>
+                        </dl>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== BEBIDAS ===== -->
+        <section class="menu-block" aria-labelledby="t-bebidas">
+            <h3 id="t-bebidas" class="block-title">Bebidas</h3>
+            <div class="list-card">
+                <dl class="price-list">
+                    <div><dt>Gaseosa línea Pepsi</dt><dd>$3.000</dd></div>
+                    <div><dt>Agua con / sin gas</dt><dd>$3.000</dd></div>
+                    <div><dt>Stella Artois</dt><dd>$6.000</dd></div>
+                    <div><dt>Stella Artois sin alcohol</dt><dd>$4.500</dd></div>
+                    <div><dt>Patagonia</dt><dd>$6.000</dd></div>
+                </dl>
+            </div>
+            <p class="coming-soon"><span>Próximamente</span> Postre</p>
+        </section>
+
+        <!-- ===== HORARIOS ===== -->
+        <div class="title-container">
+            <h2 class="horarios-title" id="horarios">Horarios</h2>
+        </div>
+        <div class="horarios-container">
+            <div class="list-card horarios-card">
+                <dl class="hours-list">
+                    <div><dt>Lunes a jueves</dt><dd>12 a 16 hs · 19 a 00 hs</dd></div>
+                    <div><dt>Viernes</dt><dd>12 a 16 hs · 19 a 01 hs</dd></div>
+                    <div><dt>Sábado</dt><dd>12 a 01 hs</dd></div>
+                    <div><dt>Domingo</dt><dd>12 a 00 hs</dd></div>
+                </dl>
+            </div>
+            <img src="img/local.webp" alt="Ilustración del local de Gordis Burger en la esquina" class="local-img" width="900" height="590" loading="lazy">
+
+            <div class="map-card">
+                <iframe class="map-frame"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1642!2d-58.4356199!3d-34.5834014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb50059cbb207%3A0x1338151a8652222a!2sGordis%20Burger!5e0!3m2!1ses!2sar!4v1727500000000!5m2!1ses!2sar"
+                    title="Mapa de Google con la ubicación de Gordis Burger"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                <div class="map-info">
+                    <p class="map-address">
+                        <svg class="map-pin" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg>
+                        <span>Fitz Roy 1794, Palermo</span>
+                    </p>
+                    <a class="map-btn" href="https://maps.app.goo.gl/vm1HiBxD9xLdUC1C9" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <p>Página creada por <a href="https://santivi03.github.io/SantiVi-asDev/" target="_blank" rel="noopener noreferrer">Santiago Viñas</a></p>
+        </footer>
+    </main>
+
+    <script>
+        const logo = document.getElementById('the-logo');
+        const bubble = document.getElementById('speech-bubble');
+        const horariosSection = document.getElementById('horarios');
+        let ticking = false;
+
+        function updateLogoPosition() {
+            ticking = false;
+            const scrollY = window.scrollY;
+            const wh = window.innerHeight;
+            const ww = window.innerWidth;
+            const isMobile = ww < 768;
+            const progress = Math.min(scrollY / wh, 1);
+
+            // VARIABLES INICIALES (HERO)
+            const startLeft = 50;
+            const startMargin = isMobile ? -40 : -380;
+            const startTop = isMobile ? 0.20 * wh : 0.40 * wh;
+
+            // VARIABLES FINALES (MENÚ ATERRIZAJE)
+            // Va a la esquina derecha para no tapar las tarjetas del menú
+            const targetLeft = 100;
+            const endMargin = isMobile ? -105 : -210;
+            const endTop = isMobile ? (wh - 120) : (wh - 180);
+
+            const top = startTop + (endTop - startTop) * progress;
+            const left = startLeft + (targetLeft - startLeft) * progress;
+            const margin = startMargin + (endMargin - startMargin) * progress;
+
+            logo.style.top = top + 'px';
+            logo.style.left = left + '%';
+            logo.style.marginLeft = margin + 'px';
+            bubble.classList.toggle('show', progress >= 1);
+
+            // Ocultar el logo y moverlo a la derecha cuando aparece la sección de horarios.
+            // getBoundingClientRect mide desde la pantalla, así no depende de qué elemento
+            // tenga position: relative (offsetTop medía desde el <main>, no desde la página).
+            const hide = horariosSection.getBoundingClientRect().top < wh * 0.9;
+            logo.style.transform = hide ? 'translateX(100vw)' : 'translateX(0)';
+            logo.style.opacity = hide ? '0' : '1';
+            logo.style.pointerEvents = hide ? 'none' : 'auto';
+        }
+
+        // requestAnimationFrame: recalcula como mucho una vez por frame en vez de en cada evento de scroll
+        function requestUpdate() {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateLogoPosition);
+            }
+        }
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
+        updateLogoPosition();
+    </script>
+</body>
+</html>
