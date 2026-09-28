@@ -3,9 +3,13 @@
     --red-dark: #e02b2b;
     --brown: #660000;
     --yellow: #ffd21f;
-    --sky: #33ccff;
+    --sky: #51c7d9; /* celeste agua de la pared del local (medido al sol, más saturado) */
     --white: #ffffff;
     --card-shadow: 6px 6px 0 var(--brown);
+    /* Profundidad de la extrusión de los títulos (ver .fx-3d) */
+    --ext-lg: 1px 1px 0 var(--brown), 2px 2px 0 var(--brown), 3px 3px 0 var(--brown), 4px 4px 0 var(--brown), 5px 5px 0 var(--brown), 6px 6px 0 var(--brown), 7px 7px 0 var(--brown), 8px 8px 0 var(--brown), 9px 9px 0 var(--brown), 10px 10px 0 var(--brown), 11px 11px 0 var(--brown), 12px 12px 0 var(--brown), 13px 13px 0 var(--brown), 14px 14px 0 var(--brown);
+    --ext-md: 1px 1px 0 var(--brown), 2px 2px 0 var(--brown), 3px 3px 0 var(--brown), 4px 4px 0 var(--brown), 5px 5px 0 var(--brown), 6px 6px 0 var(--brown);
+    --ext-sm: 1px 1px 0 var(--brown), 2px 2px 0 var(--brown), 3px 3px 0 var(--brown), 4px 4px 0 var(--brown);
 }
 
 * {
@@ -123,16 +127,37 @@ body {
     flex-direction: column;
     align-items: center;
     color: var(--red);
-    text-shadow:
-        -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff,
-        -2px 0 0 #ffffff, 2px 0 0 #ffffff, 0 -2px 0 #ffffff, 0 2px 0 #ffffff,
-        -4px -4px 0 #660000, 4px -4px 0 #660000, -4px 4px 0 #660000, 4px 4px 0 #660000,
-        -4px 0 0 #660000, 4px 0 0 #660000, 0 -4px 0 #660000, 0 4px 0 #660000,
-        5px 5px 0 #660000, 6px 6px 0 #660000, 7px 7px 0 #660000, 8px 8px 0 #660000,
-        9px 9px 0 #660000, 10px 10px 0 #660000;
     letter-spacing: 3px;
     line-height: 1.1;
     transform: rotate(-3deg);
+    --ext: var(--ext-lg);
+}
+
+/* Títulos con contorno + extrusión 3D.
+   Adelante: contorno liso (trazo real, mide el doble porque la mitad queda tapada por el relleno).
+   Atrás (::before): copia del texto en marrón, con un trazo apenas más grueso (el filo) y
+   text-shadow de a 1px que arma la profundidad sin escalones.
+   Van en capas separadas porque Chrome pinta la sombra del relleno encima del contorno.
+   No usar filter: drop-shadow() encadenado: traba el scroll. */
+.fx-3d {
+    --stroke: 0.1em;
+    --stroke-color: var(--white);
+    position: relative;
+    isolation: isolate;
+    -webkit-text-stroke: var(--stroke) var(--stroke-color);
+    paint-order: stroke fill;
+}
+
+.fx-3d::before {
+    content: attr(data-text);
+    content: attr(data-text) / "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    color: var(--brown);
+    -webkit-text-stroke: calc(var(--stroke) + 3px) var(--brown);
+    text-shadow: var(--ext, var(--ext-md));
+    pointer-events: none;
 }
 
 .main-title {
@@ -175,17 +200,15 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--red);
-    text-shadow:
-        1px 1px 0 #ffffff, -1px -1px 0 #ffffff,
-        1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+    -webkit-text-stroke: 4px var(--white);
+    paint-order: stroke fill;
 }
 
 .arrow {
     font-size: 3rem;
     color: var(--red);
-    text-shadow:
-        1px 1px 0 #ffffff, -1px -1px 0 #ffffff,
-        1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+    -webkit-text-stroke: 4px var(--white);
+    paint-order: stroke fill;
 }
 
 /* Menu Section */
@@ -212,9 +235,6 @@ body {
     font-size: 5rem;
     color: var(--red);
     margin-bottom: 30px;
-    text-shadow:
-        -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff,
-        4px 4px 0 #660000, 5px 5px 0 #660000;
 }
 
 /* Avisos (salen con papas / dip) */
@@ -228,7 +248,7 @@ body {
 }
 
 .note {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.05rem;
     color: var(--red);
     padding: 10px 20px;
@@ -252,16 +272,16 @@ body {
 }
 
 .block-title {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-weight: normal;
     font-size: 2.6rem;
     text-align: center;
     color: var(--white);
     margin-bottom: 28px;
     letter-spacing: 1px;
-    text-shadow:
-        -2px -2px 0 var(--red), 2px -2px 0 var(--red), -2px 2px 0 var(--red), 2px 2px 0 var(--red),
-        4px 4px 0 var(--brown), 5px 5px 0 var(--brown);
+    --stroke: 0.14em;
+    --stroke-color: var(--red);
+    --ext: var(--ext-sm);
 }
 
 /* Flex en vez de grid para que la última fila (2 de 5 burgas) quede centrada */
@@ -320,7 +340,7 @@ body {
 }
 
 .product-num {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 0.95rem;
     color: var(--white);
     background: var(--red);
@@ -330,7 +350,7 @@ body {
 }
 
 .product-name {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-weight: normal;
     font-size: 1.6rem;
     line-height: 1.15;
@@ -381,7 +401,7 @@ body {
 }
 
 .prices dd {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.35rem;
     color: var(--red);
 }
@@ -417,7 +437,7 @@ body {
 }
 
 .cajita-title {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-weight: normal;
     font-size: 2.3rem;
     line-height: 1.05;
@@ -453,7 +473,7 @@ body {
 
 .combo-list dd {
     display: inline-block;
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.5rem;
     color: var(--white);
     background: var(--red);
@@ -506,14 +526,14 @@ body {
 
 .price-list dd {
     order: 3;
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.2rem;
 }
 
 .coming-soon {
     margin: 36px auto 0;
     width: fit-content;
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.8rem;
     color: var(--red);
     background: var(--yellow);
@@ -539,9 +559,6 @@ body {
     color: var(--red);
     margin-top: 40px;
     margin-bottom: 30px;
-    text-shadow:
-        -2px -2px 0 #ffffff, 2px -2px 0 #ffffff, -2px 2px 0 #ffffff, 2px 2px 0 #ffffff,
-        4px 4px 0 #660000, 5px 5px 0 #660000;
 }
 
 .horarios-container {
@@ -563,7 +580,7 @@ body {
 }
 
 .hours-list dt {
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.35rem;
     color: var(--red);
     text-transform: uppercase;
@@ -630,7 +647,7 @@ body {
     justify-content: center;
     min-height: 48px;
     padding: 0 24px;
-    font-family: 'Titan One', sans-serif;
+    font-family: 'Chango', sans-serif;
     font-size: 1.05rem;
     text-transform: uppercase;
     text-decoration: none;
@@ -719,6 +736,11 @@ body {
 
     .main-title {
         font-size: 5rem;
+    }
+
+    /* Título más chico: extrusión más corta para que no se empaste */
+    .brand-name {
+        --ext: var(--ext-md);
     }
 
     .sub-title {
@@ -825,23 +847,21 @@ body {
     font-size: 1rem;
     color: var(--red);
     font-weight: 700;
-    text-shadow:
-        1px 1px 0 #ffffff, -1px -1px 0 #ffffff,
-        1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+    -webkit-text-stroke: 4px var(--white);
+    paint-order: stroke fill;
 }
 
 .site-footer a {
     color: var(--red);
     text-decoration: underline;
     font-weight: 700;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.3s ease, -webkit-text-stroke-color 0.3s ease;
 }
 
+/* Al pasar el mouse se invierte: letra blanca con contorno rojo */
 .site-footer a:hover {
     color: #ffffff;
-    text-shadow:
-        1px 1px 0 var(--red), -1px -1px 0 var(--red),
-        1px -1px 0 var(--red), -1px 1px 0 var(--red);
+    -webkit-text-stroke-color: var(--red);
 }
 
 /* Respetar a quien tiene activado "reducir movimiento" en su dispositivo */
